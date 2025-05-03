@@ -1,0 +1,14 @@
+version: "3.9"
+
+services:
+  frontend:
+    build: ../frontend
+    container_name: abyss-frontend
+    ports:
+      - "3001:3000"
+    volumes:
+      - ../frontend:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+    working_dir: /app
