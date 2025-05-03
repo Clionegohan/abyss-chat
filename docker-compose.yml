@@ -1,0 +1,39 @@
+version: "3.9"
+
+services:
+  frontend:
+    build: ./frontend
+    container_name: abyss-frontend
+    ports:
+      - "3001:3000"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+    working_dir: /app
+
+  backend:
+    build:
+      context: ./backend
+    working_dir: /app
+    volumes:
+      - ./backend:/app
+    ports:
+      - "4000:3001"
+    depends_on:
+      - db
+
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: dev
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: abyss_chat
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+volumes:
+  postgres_data:
