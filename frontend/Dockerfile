@@ -1,6 +1,6 @@
 # frontend/Dockerfile
 
-FROM node:18
+FROM node:23-slim
 
 WORKDIR /app
 
