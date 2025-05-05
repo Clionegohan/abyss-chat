@@ -1,22 +1,18 @@
 import express from 'express';
 import cors from 'cors';
 import { pool } from './db';
+import { PrismaClient } from './generated/prisma';
 
 const app = express()
 const PORT = 3001
+const prisma = new PrismaClient()
 
-app.use(cors())
-app.use(express.json())
+async function main() {
+    const users = await prisma.user.findMany()
+    console.log('Users:', users)
+}
 
-app.get('/', async (_req, res) => {
-    try {
-        const result = await pool.query('SELECT NOW()');
-        res.send(`DB接続成功！！時刻： ${result.rows[0].now}`);
-    } catch (err) {
-        res.status(500).send('DB接続に失敗しました！');
-    }
-});
+main()
+    .catch((e) => console.error(e))
+    .finally(() => prisma.$disconnect())
 
-app.listen(PORT, () => {
-  console.log(`🚀 Server is running at http://localhost:${PORT}`)
-})
