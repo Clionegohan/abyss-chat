@@ -11,7 +11,7 @@ app.use(cors());
 app.use(express.json());
 
 app.get('/', (req, res) => {
-    res.send('Abess Chat Backend is running');
+    res.send('Abyss Chat Backend is running');
 });
 
 app.listen(PORT, () => {
