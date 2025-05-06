@@ -5,7 +5,7 @@ export const metadata = {
 
 export default function Home() {
   return (
-      <div className="min-h-screen bg-blue-900 flex items-center justify-center">
+      <div className="min-h-screen bg-blue-500 flex items-center justify-center">
           <div className="text-center space-y-4">
               <h1 className="text-4xl font-bold">ようこそ、Abyss Chatへ！</h1>
               <p className="text-lg text-gray-600">
