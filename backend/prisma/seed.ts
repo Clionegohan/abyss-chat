@@ -9,17 +9,27 @@ async function main() {
             {
                 name: 'Alice',
                 gender: '女',
+                avatarUrl: "coelacanth.png",
                 message: 'Hello!!',
+                email: 'example@test.com',
+                passwordHash: 'password',
+                
             },
             {
                 name: 'リーダー',
                 gender: '男',
+                avatarUrl: "sea-angel.png",
                 message: 'こんにちは',
+                email: 'example@test.org',
+                passwordHash: 'password',
             },
             {
                 name: '女マン',
                 gender: 'その他',
+                avatarUrl: "leafy-seadragon.png",
                 message: 'オンデマンド！',
+                email: 'example@example.com',
+                passwordHash: 'password',
             },
         ],
     });
