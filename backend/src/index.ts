@@ -2,7 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import userRouter from './routes/userRoutes';
 
-import { pool } from './db';
+import { pool } from './config/db';
 import { PrismaClient } from './generated/prisma';
 
 const app = express();
