@@ -6,7 +6,7 @@ services:
       - "3001:3000"
     volumes:
       - ./frontend:/app
-      - /app/node_modules
+    #  - /app/node_modules
     environment:
       - NODE_ENV=development
     working_dir: /app
@@ -19,7 +19,7 @@ services:
       - "4000:3001"
     volumes:
       - ./backend:/app
-      - /app/node_modules
+    # - /app/node_modules
     environment:
       - NODE_ENV=development
     depends_on:
@@ -37,6 +37,18 @@ services:
       - postgres_data:/var/lib/postgresql/data
     ports:
       - "5432:5432"
+
+  aicommits:
+    build:
+      context: .
+      dockerfile: .devtools/aicommits.Dockerfile
+    image: aicommits-cli
+    working_dir: /repo
+    volumes:
+      - ./:/repo
+    environment: 
+      - OPENAI_KEY=${OPENAI_KEY}
+    entrypoint: [ "aicommits" ]
 
 volumes:
   postgres_data:
