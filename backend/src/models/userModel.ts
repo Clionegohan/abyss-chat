@@ -5,9 +5,21 @@ export const getUserByIdModel = async (UserId: string) => {
     return await prisma.user.findUnique({ where: { id: UserId } });
 };
 
-export const userExistsByEmail = async (email: string) => {
+export const findUserByEmail = async (email: string) => {
     return await prisma.user.findUnique({ where: { email } });
 };
+
+export const findUserById = (id: string) => {
+    return prisma.user.findUnique({
+      where: { id },
+      select: {
+        id: true,
+        name: true,
+        email: true,
+        avatarUrl: true,
+      },
+    });
+  };
 
 export const createUserModel = async (input : CreateUserInputWithHash) => {
     return await prisma.user.create({

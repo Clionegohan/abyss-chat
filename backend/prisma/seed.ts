@@ -1,9 +1,12 @@
 import e from 'express';
 import {  PrismaClient } from '../src/generated/prisma';
+import { hashPassword } from '../src/utils/hash';
 
 const prisma = new PrismaClient();
 
 async function main() {
+    await prisma.user.deleteMany();
+
     await prisma.user.createMany({
         data: [
             {
@@ -12,7 +15,7 @@ async function main() {
                 avatarUrl: "coelacanth.png",
                 message: 'Hello!!',
                 email: 'example@test.com',
-                passwordHash: 'password',
+                passwordHash: await hashPassword('abc123'),
                 
             },
             {
@@ -21,7 +24,7 @@ async function main() {
                 avatarUrl: "sea-angel.png",
                 message: 'こんにちは',
                 email: 'example@test.org',
-                passwordHash: 'password',
+                passwordHash: await hashPassword('abc123'),
             },
             {
                 name: '女マン',
@@ -29,7 +32,7 @@ async function main() {
                 avatarUrl: "leafy-seadragon.png",
                 message: 'オンデマンド！',
                 email: 'example@example.com',
-                passwordHash: 'password',
+                passwordHash: await hashPassword('abc123'),
             },
         ],
     });
