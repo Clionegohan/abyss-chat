@@ -1,24 +1,10 @@
-import express from 'express';
-import cors from 'cors';
-import userRouter from './routes/userRoutes';
+import dotenv from 'dotenv';
+import app from './app';
 
-import { pool } from './config/db';
-import { PrismaClient } from './generated/prisma';
+dotenv.config();
 
-const app = express();
-const PORT = 3001;
-const prisma = new PrismaClient();
-
-app.use(cors());
-app.use(express.json());
-
-app.get('/', (req, res) => {
-    res.send('Abyss Chat Backend is running');
-});
-
-app.use('/users', userRouter);
-
+const PORT = process.env.PORT || 4000;
 
 app.listen(PORT, () => {
-    console.log(`Server is running on http://localhost:${PORT}`);
+  console.log(`🚀 Server running at http://localhost:${PORT}`);
 });

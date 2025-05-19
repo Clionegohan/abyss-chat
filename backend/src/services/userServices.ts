@@ -1,4 +1,4 @@
-import { getUserByIdModel, createUserModel, userExistsByEmail } from '../models/userModel';
+import { getUserByIdModel, createUserModel, findUserByEmail } from '../models/userModel';
 import { hashPassword } from '../utils/hash';
 import { CreateUserInput } from '../types/user';
 
@@ -7,7 +7,7 @@ export const getUserByIdService = async (id: string) => {
 };
 
 export const createUserService = async (input: CreateUserInput) => {
-    const exists = await userExistsByEmail(input.email);
+    const exists = await findUserByEmail(input.email);
     if (exists) throw new Error('そのメールアドレスは既に使われています。');
 
     const passwordHash = await hashPassword(input.password);

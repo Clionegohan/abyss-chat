@@ -16,7 +16,7 @@ services:
       context: ./backend
     container_name: abyss-backend
     ports:
-      - "4000:3001"
+      - "4000:4000"
     volumes:
       - ./backend:/app
     # - /app/node_modules
@@ -38,17 +38,20 @@ services:
     ports:
       - "5432:5432"
 
-  aicommits:
-    build:
-      context: .
-      dockerfile: .devtools/aicommits.Dockerfile
-    image: aicommits-cli
-    working_dir: /repo
-    volumes:
-      - ./:/repo
-    environment: 
-      - OPENAI_KEY=${OPENAI_KEY}
-    entrypoint: [ "aicommits" ]
+
+
+
+  # aicommits:
+  #   build:
+  #     context: .
+  #     dockerfile: .devtools/aicommits.Dockerfile
+  #   image: aicommits-cli
+  #   working_dir: /repo
+  #   volumes:
+  #     - ./:/repo
+  #   environment: 
+  #     - OPENAI_KEY=${OPENAI_KEY}
+  #   entrypoint: [ "aicommits" ]
 
 volumes:
   postgres_data:

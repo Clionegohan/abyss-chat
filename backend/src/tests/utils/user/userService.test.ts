@@ -3,10 +3,6 @@ import prisma from "../../../config/db";
 import { generateValidUser } from "../../fixtures/user";
 
 describe("User Service", () => {
-  beforeEach(async () => {
-    await prisma.user.deleteMany(); //テストごとにDBリセット
-  });
-
   it("有効なユーザーを作成できること", async () => {
     const userData = generateValidUser();
     const user = await createUserService(userData);

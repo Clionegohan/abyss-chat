@@ -9,7 +9,7 @@ export default function UserPage() {
 
   useEffect(() => {
     const fetchUser = async () => {
-      const res = await fetch(`http://localhost:4000/users/${userId}`);
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/users/${userId}`);
       const data = await res.json();
       setUser(data);
     };
